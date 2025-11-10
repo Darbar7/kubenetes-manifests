@@ -1,0 +1,10 @@
+piversion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mycontainer
+    image: my image :latest
+    ports:
+    - containerPort: 8080

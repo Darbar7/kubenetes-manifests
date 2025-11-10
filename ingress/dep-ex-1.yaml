@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngnix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ngnix
+  template:
+    metadata:
+      labels:
+        app: ngnix
+    spec:
+      containers:
+      - name: ngnix
+        image: ngnix:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: USERNAME
+          value: "NGNIX APP1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngnix
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: ngnix
